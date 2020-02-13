@@ -103,7 +103,24 @@ limitations under the License.
     window.onload = function() {
       document.getElementById('file').addEventListener('change', handleFileSelect, false);
       document.getElementById('file').disabled = true;
+      fetch('https://firebasestorage.googleapis.com/v0/b/onlinereservation-2lx.appspot.com/o/images%2FCOI-Landscape.png?alt=media&token=03379592-5481-4686-9589-d728b4821de6', {method:'HEAD'})
+          .then(
+            function(response) {
+              if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                  response.status);
+                return;
+              }
 
+              // // Examine the text in the response
+              // response.json().then(function(data) {
+              //   console.log(data);
+              // });
+            }
+          )
+          .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+          });
       auth.onAuthStateChanged(function(user) {
         if (user) {
           console.log('Anonymous user signed-in.', user);
